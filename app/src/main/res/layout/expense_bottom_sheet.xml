@@ -6,11 +6,11 @@
 
         <variable
             name="expense"
-            type="com.example.cento.model.Expense" />
+            type="com.example.cento.data.entities.Expense" />
 
         <variable
             name="fragment"
-            type="com.example.cento.ExpenseBottomSheet" />
+            type="com.example.cento.ui.fragments.ExpenseBottomSheet" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -90,8 +90,7 @@
                 android:id="@+id/tet_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="none"
-                android:text="@={expense.date}" />
+                android:inputType="none" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

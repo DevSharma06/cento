@@ -1,4 +1,4 @@
-package com.example.cento
+package com.example.cento.ui.fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -10,8 +10,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
+import com.example.cento.R
+import com.example.cento.data.entities.Expense
 import com.example.cento.databinding.ExpenseBottomSheetBinding
-import com.example.cento.model.Expense
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.text.SimpleDateFormat
@@ -25,6 +26,8 @@ class ExpenseBottomSheet : BottomSheetDialogFragment() {
     companion object {
         const val TAG = "ExpenseBottomSheet"
     }
+
+    var onExpenseAdded: ((Expense) -> Unit)? = null
 
     private val expense = Expense()
 
@@ -50,6 +53,8 @@ class ExpenseBottomSheet : BottomSheetDialogFragment() {
 
     fun addExpense() {
         Log.d(TAG, "addExpense: $expense")
+        onExpenseAdded?.invoke(expense)
+        dismiss()
     }
 
     private fun setAutoCompleteDropdownItems(view: View) {
@@ -94,6 +99,7 @@ class ExpenseBottomSheet : BottomSheetDialogFragment() {
             val sdf = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
             val formattedDate = sdf.format(Date(selectedDate))
             binding.tetDate.setText(formattedDate)
+            expense.date = selectedDate
         }
     }
 
