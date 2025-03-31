@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.cento.R
 import com.example.cento.data.entities.Expense
 import com.example.cento.databinding.ExpenseItemBinding
+import com.example.cento.utils.Helper
 
 class ExpenseAdapter : RecyclerView.Adapter<ExpenseAdapter.ExpenseViewHolder>() {
 
@@ -38,6 +39,8 @@ class ExpenseAdapter : RecyclerView.Adapter<ExpenseAdapter.ExpenseViewHolder>() 
     class ExpenseViewHolder(private val binding: ExpenseItemBinding) : ViewHolder(binding.root) {
         fun bind(expense: Expense) {
             binding.expense = expense
+
+            binding.ivCategory.setImageResource(Helper.getCategoryIcon(expense.category))
         }
     }
 }

@@ -9,6 +9,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.cento.R
 import com.example.cento.data.entities.Expense
@@ -16,6 +17,7 @@ import com.example.cento.databinding.ExpenseBottomSheetBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
@@ -51,10 +53,41 @@ class ExpenseBottomSheet : BottomSheetDialogFragment() {
         showDatePicker()
     }
 
+    fun validateInputs(): Boolean {
+        var isValid = true
+
+        val amount = binding.tetAmount.text.toString().trim()
+        val category = binding.actCategory.text.toString().trim()
+
+        if (amount.isEmpty()) {
+            binding.tfAmount.error = "Amount is required"
+            isValid = false
+        } else {
+            binding.tfAmount.error = null
+        }
+
+        if (category.isEmpty() || category == "Select") {
+            binding.tfCategory.error = "Please select a category"
+            isValid = false
+        } else {
+            binding.tfCategory.error = null
+        }
+
+        if (expense.date.toString().isEmpty()) {
+            binding.tfDate.error = "Date is required"
+            isValid = false
+        }
+
+        return isValid
+    }
+
     fun addExpense() {
-        Log.d(TAG, "addExpense: $expense")
-        onExpenseAdded?.invoke(expense)
-        dismiss()
+        if (validateInputs()) {
+            Log.d(TAG, "addExpense: $expense")
+            onExpenseAdded?.invoke(expense)
+            Toast.makeText(requireContext(), "Expense added!", Toast.LENGTH_SHORT).show()
+            dismiss()
+        }
     }
 
     private fun setAutoCompleteDropdownItems(view: View) {
@@ -67,6 +100,7 @@ class ExpenseBottomSheet : BottomSheetDialogFragment() {
         val sdf = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
         val currentDate = sdf.format(Date())
         binding.tetDate.setText(currentDate)
+        expense.date = Calendar.getInstance().timeInMillis
     }
 
     @SuppressLint("ClickableViewAccessibility")

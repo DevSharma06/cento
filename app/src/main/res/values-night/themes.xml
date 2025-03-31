@@ -1,7 +1,31 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.Cento" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+
+        <!-- Background and Surface -->
+        <item name="android:colorBackground">@color/colorBackground</item>
+        <item name="colorSurface">@color/colorSurface</item>
+
+        <!-- Text Colors -->
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:textColorSecondary">@color/textColorSecondary</item>
+
+        <!-- Status Bar and Navigation Bar -->
+        <item name="android:statusBarColor">@color/colorPrimaryVariant</item>
+        <item name="android:navigationBarColor">@color/colorBackground</item>
+
+        <!-- Button Style-->
+        <item name="buttonStyle">@style/Widget.Cento.Button</item>
+        <item name="materialButtonStyle">@style/Widget.Cento.Button</item>
+    </style>
+
+    <style name="Widget.Cento.Button" parent="Widget.Material3.Button.ElevatedButton">
+        <item name="android:backgroundTint">@color/colorPrimary</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="cornerRadius">6dp</item>
     </style>
 </resources>
