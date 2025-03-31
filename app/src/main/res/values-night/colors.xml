@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Colors -->
+    <color name="colorPrimary">#D32F2F</color> <!-- Dark Red -->
+    <color name="colorPrimaryVariant">#B71C1C</color> <!-- Deep Red -->
+    <color name="colorSecondary">#FF5252</color> <!-- Light Red / Accent -->
+
+    <!-- Background & Surface -->
+    <color name="colorBackground">#121212</color> <!-- Pure Dark Background -->
+    <color name="colorSurface">#1E1E1E</color> <!-- Slightly lighter black for cards/surfaces -->
+
+    <!-- Text Colors -->
+    <color name="textColorPrimary">#FFFFFF</color> <!-- White for contrast -->
+    <color name="textColorSecondary">#B0B0B0</color> <!-- Light Gray for less prominent text -->
+
+    <!-- Other UI Elements -->
+    <color name="colorError">#CF6679</color> <!-- Red for errors (Material 3) -->
+    <color name="colorDivider">#292929</color> <!-- Dark Gray for dividers -->
+</resources>

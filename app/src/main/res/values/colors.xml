@@ -2,4 +2,21 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Primary Colors -->
+    <color name="colorPrimary">#D32F2F</color> <!-- Dark Red -->
+    <color name="colorPrimaryVariant">#B71C1C</color> <!-- Deep Red -->
+    <color name="colorSecondary">#FF5252</color> <!-- Light Red / Accent -->
+
+    <!-- Background & Surface -->
+    <color name="colorBackground">#FFFFFF</color> <!-- Pure White Background -->
+    <color name="colorSurface">#F5F5F5</color> <!-- Light Gray for cards/surfaces -->
+
+    <!-- Text Colors -->
+    <color name="textColorPrimary">#212121</color> <!-- Dark Gray for contrast -->
+    <color name="textColorSecondary">#757575</color> <!-- Medium Gray for secondary text -->
+
+    <!-- Other UI Elements -->
+    <color name="colorError">#D32F2F</color> <!-- Red for errors -->
+    <color name="colorDivider">#E0E0E0</color> <!-- Light Gray for dividers -->
 </resources>
