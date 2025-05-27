@@ -20,8 +20,8 @@
         <item name="android:navigationBarColor">@color/colorBackground</item>
 
         <!-- Button Style-->
-        <item name="android:buttonStyle">@style/Widget.Cento.Button</item>
-        <item name="materialButtonStyle">@style/Widget.Cento.Button</item>
+        <!--        <item name="android:buttonStyle">@style/Widget.Cento.Button</item>-->
+        <!--        <item name="materialButtonStyle">@style/Widget.Cento.Button</item>-->
 
         <!-- Additional button style references for Material 3 -->
         <item name="buttonStyle">@style/Widget.Cento.Button</item>

@@ -15,6 +15,7 @@ class ExpenseAdapter : RecyclerView.Adapter<ExpenseAdapter.ExpenseViewHolder>() 
     private var expenses = mutableListOf<Expense>()
 
     fun setExpensesList(expenseList: List<Expense>) {
+        this.expenses.clear()
         this.expenses.addAll(expenseList)
         notifyDataSetChanged()
     }

@@ -1,6 +1,7 @@
 package com.example.cento.ui.activities
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -13,14 +14,18 @@ import com.example.cento.databinding.ActivityMainBinding
 import com.example.cento.ui.adapters.ExpenseAdapter
 import com.example.cento.ui.fragments.ExpenseBottomSheet
 import com.example.cento.utils.SwipeToDeleteCallback
+import com.example.cento.utils.TimeInterval
 import com.example.cento.viewmodel.ExpenseViewModel
 import com.example.cento.viewmodel.ExpenseViewModelFactory
+import com.google.android.material.button.MaterialButton
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: ExpenseViewModel
     private lateinit var adapter: ExpenseAdapter
+
+    private var timeInterval = TimeInterval.DAY
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,11 +63,38 @@ class MainActivity : AppCompatActivity() {
         binding.fab.setOnClickListener {
             expenseBottomSheet.show(supportFragmentManager, ExpenseBottomSheet.TAG)
         }
+
+        setButtonSelection()
+    }
+
+    private fun setButtonSelection() {
+        val buttons = mapOf(
+            binding.btDay to TimeInterval.DAY,
+            binding.btWeek to TimeInterval.WEEK,
+            binding.btMonth to TimeInterval.MONTH,
+            binding.btYear to TimeInterval.YEAR
+        )
+
+        selectButton(binding.btDay, buttons)
+
+        buttons.forEach { button ->
+            button.key.setOnClickListener {
+                selectButton(button.key, buttons)
+                timeInterval = buttons.getOrDefault(button.key, TimeInterval.DAY)
+                viewModel.setFilter(
+                    buttons.getOrDefault(button.key, TimeInterval.DAY)
+                )
+            }
+        }
+    }
+
+    private fun selectButton(selected: View, allButtons: Map<MaterialButton, TimeInterval>) {
+        allButtons.forEach { it.key.isSelected = (it.key == selected) }
     }
 
     private fun setData() {
         viewModel.getAllExpenses()
-        viewModel.allExpenses.observe(this, { expenses ->
+        viewModel.filteredExpenses.observe(this, { expenses ->
             adapter.setExpensesList(expenses)
         })
     }
