@@ -19,8 +19,8 @@
         <item name="android:navigationBarColor">@color/colorBackground</item>
 
         <!-- Button Style-->
-        <item name="buttonStyle">@style/Widget.Cento.Button</item>
-        <item name="materialButtonStyle">@style/Widget.Cento.Button</item>
+        <!--        <item name="buttonStyle">@style/Widget.Cento.Button</item>-->
+        <!--        <item name="materialButtonStyle">@style/Widget.Cento.Button</item>-->
     </style>
 
     <style name="Widget.Cento.Button" parent="Widget.Material3.Button.ElevatedButton">

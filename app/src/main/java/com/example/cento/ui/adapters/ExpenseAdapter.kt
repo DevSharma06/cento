@@ -12,10 +12,11 @@ import com.example.cento.utils.Helper
 
 class ExpenseAdapter : RecyclerView.Adapter<ExpenseAdapter.ExpenseViewHolder>() {
 
-    var expenses: List<Expense> = emptyList()
+    private var expenses = mutableListOf<Expense>()
 
     fun setExpensesList(expenseList: List<Expense>) {
-        this.expenses = expenseList
+        this.expenses.clear()
+        this.expenses.addAll(expenseList)
         notifyDataSetChanged()
     }
 
@@ -30,10 +31,17 @@ class ExpenseAdapter : RecyclerView.Adapter<ExpenseAdapter.ExpenseViewHolder>() 
     }
 
     override fun onBindViewHolder(holder: ExpenseViewHolder, position: Int) {
-        holder.bind(expenses.get(position))
+        holder.bind(expenses[position])
     }
 
     override fun getItemCount() = expenses.size
+
+    fun removeAt(position: Int): Expense {
+        val removedExpense = expenses[position]
+        this.expenses.removeAt(position)
+        notifyItemRemoved(position)
+        return removedExpense
+    }
 
 
     class ExpenseViewHolder(private val binding: ExpenseItemBinding) : ViewHolder(binding.root) {

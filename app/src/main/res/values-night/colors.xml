@@ -16,4 +16,6 @@
     <!-- Other UI Elements -->
     <color name="colorError">#CF6679</color> <!-- Red for errors (Material 3) -->
     <color name="colorDivider">#292929</color> <!-- Dark Gray for dividers -->
+
+    <color name="strokeColor">#33FFFFFF</color>
 </resources>
