@@ -64,10 +64,15 @@ class MainActivity : AppCompatActivity() {
             expenseBottomSheet.show(supportFragmentManager, ExpenseBottomSheet.TAG)
         }
 
-        setButtonSelection()
+        binding.swipeRefresh.setOnRefreshListener {
+            viewModel.getAllExpenses()
+            binding.swipeRefresh.isRefreshing = false
+        }
+
+        setTimeIntervalButtonSelection()
     }
 
-    private fun setButtonSelection() {
+    private fun setTimeIntervalButtonSelection() {
         val buttons = mapOf(
             binding.btDay to TimeInterval.DAY,
             binding.btWeek to TimeInterval.WEEK,
@@ -75,7 +80,11 @@ class MainActivity : AppCompatActivity() {
             binding.btYear to TimeInterval.YEAR
         )
 
-        selectButton(binding.btDay, buttons)
+        val selectedButton =
+            buttons.entries.find { it.value == viewModel.selectedInterval.value }?.key
+        if (selectedButton != null) {
+            selectButton(selectedButton, buttons)
+        }
 
         buttons.forEach { button ->
             button.key.setOnClickListener {
